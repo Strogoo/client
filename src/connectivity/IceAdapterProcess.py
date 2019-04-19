@@ -22,21 +22,28 @@ class IceAdapterProcess(object):
         s.close()
 
         if sys.platform == 'win32':
-            exe_path = os.path.join(fafpath.get_libdir(), "ice-adapter", "faf-ice-adapter.exe")
+            exe_path = os.path.join(fafpath.get_libdir(), "jre", "bin", "java.exe")
+            
         else:  # Expect it to be in PATH already
             exe_path = "faf-ice-adapter"
 
+        jar_path = os.path.join(fafpath.get_libdir(), "ice-adapter", "faf-ice-adapter.jar")
         self.ice_adapter_process = QProcess()
-        args = ["--id", str(player_id),
+        
+        args = ["-jar", jar_path,
+                "--id", str(player_id),
                 "--login", player_login,
                 "--rpc-port", str(self._rpc_server_port),
                 "--gpgnet-port", "0",
                 "--log-level" , "debug",
-                "--log-directory", Settings.get('client/logs/path', type=str)]
+                "--log-directory", Settings.get('client/logs/path', type=str),
+                "--debug-window",
+                ]
         if Settings.contains('iceadapter/args'):
             args += Settings.get('iceadapter/args', "", type=str).split(" ")
 
-        self._logger.debug("running ice adapter with {} {}".format(exe_path, " ".join(args)))
+        #self._logger.debug("running ice adapter with {} {}".format(exe_path, " ".join(args)))
+
         self.ice_adapter_process.start(exe_path, args)
 
         # wait for the first message which usually means the ICE adapter is listening for JSONRPC connections

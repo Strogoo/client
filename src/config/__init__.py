@@ -179,22 +179,13 @@ def is_development_version():
 no_dialogs = False
 
 #TODO: revert me for production
-if 'CI' in os.environ:
-    environment = 'production'
 
-    def is_beta():
-        return environment == 'development'
-
-# TODO: move stuff below to Settings __init__ once we make it an actual object
+environment = 'production'
 
 
-    if _settings.contains('client/force_environment'):
-        environment = _settings.value('client/force_environment', 'development')
-else:
-    environment = 'development'
 
-    def is_beta():
-        return True
+def is_beta():
+    return False
 
 if environment == 'production':
     from .production import defaults
