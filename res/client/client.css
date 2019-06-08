@@ -218,12 +218,39 @@ QSplitter::handle:hover
 {
      background-color: #606060;
  }
+ 
+QScrollArea#replaySearchArea
+{
+    border-width: 0px;
+    background-color: #2F2F2F;
+}
+ 
+QWidget#replaySerachContent
+{
+    background-color: #2F2F2F;
+}
 
 QSpinBox#minRating, QLineEdit#mapName, #playerName, QDateEdit#dateEnd, #dateStart, QSpinBox#quantity, #advQuantity,
 QComboBox#modList, #value1, #value2, #value3, #value4, #value5, #value6
 {
     background-color: #353535;
     color: orange;
+}
+
+QSpinBox#minRating, QDateEdit#dateEnd, #dateStart, QSpinBox#quantity, #advQuantity
+{
+    border-width: 1px;
+    border-style: solid;
+    border-color : #353535;
+}
+
+QDateEdit#dateStart::drop-down:enabled, #dateEnd::drop-down:enabled
+{
+    image: url('%THEMEPATH%/client/dropDownEnabled.png');
+}
+QDateEdit#dateStart::drop-down:disabled, #dateEnd::drop-down:disabled
+{
+    image: url('%THEMEPATH%/client/dropDownDisabled.png');
 }
 
 QComboBox#filter1, #filter2, #filter3, #filter4, #filter5, #filter6, 
