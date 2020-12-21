@@ -6,7 +6,7 @@
  * Fix broken compatibility with server
  * Fix basic searching in vaults
  * Implement somewhat of a cache system like in the Java client
- * Online replay vault: fix downloading replays
+ * Online replay vault: fix downloading replays.
  
 Contributors:
  - Gatsik
